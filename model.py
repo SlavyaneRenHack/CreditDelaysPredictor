@@ -397,13 +397,10 @@ def gen_file():
 	p = model.predict_proba(base_df)
 	res = []
 	for t, f in p:
-		if f > 0.4:
-			res.append(1)
-		else:
-			res.append(0)
+		res.append(round(t, 10))
 
 	# print(res)
-	user_df['unreliable'] = res
+	user_df['reliable'] = res
 	output_file = "data/val_out.csv"
 	user_df.to_csv(output_file, index=False)
 	# print(np.max(p, axis=0))
